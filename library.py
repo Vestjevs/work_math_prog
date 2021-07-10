@@ -24,12 +24,20 @@ class Library:
             self.__books.pop(i)
 
     def show_books(self):
-        print('\n'.join([elem.get_name() for elem in self.__books]))
+        print('\n'.join([f"Автор: {elem.get_author().get_name()}, название: {elem.get_name()}" for elem in self.__books]))
 
     def author_search(self, name):
         result = self.is_author_present(name)
         if result != -1:
             print("\n".join([elem for elem in self.__books if elem.get_author().get_name() == name]))
+
+    def show_books_by_author(self, name):
+        book_list_by_author = []
+        for i in range(0, len(self.__books)):
+            if self.__books[i].get_author().get_name() == name:
+                book_list_by_author.append(self.__books[i].get_name())
+        print("\n".join(book_list_by_author))
+
 
     def is_author_present(self, name):
         for i in range(0, len(self.__authors)):
@@ -94,3 +102,4 @@ if __name__ == '__main__':
         my_library.add_book(book)
 
     my_library.show_books()
+
